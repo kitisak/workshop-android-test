@@ -12,7 +12,4 @@ public class HelloWorld {
         return String.format("Hello %s", this.name);
     }
 
-    public void meaw() {
-        int a=10;
-    }
 }
