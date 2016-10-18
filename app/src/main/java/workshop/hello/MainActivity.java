@@ -7,7 +7,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+import workshop.hello.api.CalculatorApi;
+
+public class MainActivity extends AppCompatActivity implements CalculatorApi.CalculatorApiCallback {
 
     private TextView resultTV;
     private EditText num1ET;
@@ -26,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onCalculate(View view) {
+
+        if(!validate()) {
+            return;
+        }
+
         Calculator calculator = new Calculator();
         int number1 = Integer.parseInt(num1ET.getText().toString());
         int number2 = Integer.parseInt(num2ET.getText().toString());
@@ -50,6 +57,24 @@ public class MainActivity extends AppCompatActivity {
 
     public void onAdd(View view) {
         this.currentOperation = Operation.ADD;
+    }
+
+    private boolean validate() {
+        if( this.num1ET.getText().length() == 0 ) {
+            this.num1ET.setError("This field is required");
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void onSuccess(final int result) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                resultTV.setText(String.valueOf(result));
+            }
+        });
     }
 }
 
