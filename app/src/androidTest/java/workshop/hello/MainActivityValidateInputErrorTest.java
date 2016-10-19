@@ -25,7 +25,6 @@ public class MainActivityValidateInputErrorTest {
     @Test public void
     empty_of_num1() {
         //Action
-        onView(withId(R.id.num1)).perform(typeText(""));
         onView(withId(R.id.calBtn)).perform(click());
 
         //Assert

@@ -4,6 +4,7 @@ import android.content.Intent;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -36,7 +37,7 @@ public class XXXTest {
         server.shutdown();
     }
 
-    @Test
+    @Test @Ignore
     public void
     call_add_api() throws IOException, InterruptedException {
         server.enqueue(new MockResponse()
@@ -59,6 +60,7 @@ public class XXXTest {
 
         RecordedRequest request1 = server.takeRequest();
         assertEquals("/api/plus/3/2", request1.getPath());
+
         assertTrue(mockCallback.verify());
     }
 

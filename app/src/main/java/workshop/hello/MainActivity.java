@@ -9,8 +9,9 @@ import android.widget.TextView;
 
 import okhttp3.Request;
 import workshop.hello.api.CalculatorApi;
+import workshop.hello.controller.MainController;
 
-public class MainActivity extends AppCompatActivity implements CalculatorApi.CalculatorApiCallback {
+public class MainActivity extends AppCompatActivity implements MainController.MainControllerCallback {
 
     private TextView resultTV;
     private EditText num1ET;
@@ -29,16 +30,10 @@ public class MainActivity extends AppCompatActivity implements CalculatorApi.Cal
     }
 
     public void onCalculate(View view) {
-        Calculator calculator = new Calculator();
-        int number1 = Integer.parseInt(num1ET.getText().toString());
-        int number2 = Integer.parseInt(num2ET.getText().toString());
-        double result = 0.0;
-        if(Operation.Minus == getCurrentOperation()) {
-            result = calculator.minus(number1, number2);
-        } else {
-            result = calculator.add(number1, number2);
-        }
-        resultTV.setText(String.format("%.2f", result));
+        MainController mainController = new MainController(this);
+        mainController.calculate(num1ET.getText().toString()
+                , num2ET.getText().toString()
+                , this.currentOperation);
     }
 
     private Operation currentOperation = Operation.ADD;
@@ -55,16 +50,13 @@ public class MainActivity extends AppCompatActivity implements CalculatorApi.Cal
         this.currentOperation = Operation.ADD;
     }
 
-    private boolean validate() {
-        if( this.num1ET.getText().length() == 0 ) {
-            this.num1ET.setError("This field is required");
-            return false;
-        }
-        return true;
+    @Override
+    public void showErrorRequiredOfNumber1() {
+        this.num1ET.setError("This field is required");
     }
 
     @Override
-    public void onSuccess(final String result) {
+    public void showResult(final String result) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -72,8 +64,10 @@ public class MainActivity extends AppCompatActivity implements CalculatorApi.Cal
             }
         });
     }
+
+    public enum Operation {
+        ADD, Minus
+    }
+
 }
 
-enum Operation {
-    ADD, Minus
-}

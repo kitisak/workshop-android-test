@@ -5,6 +5,7 @@ import android.support.test.espresso.core.deps.guava.base.Charsets;
 import android.support.test.espresso.core.deps.guava.io.Resources;
 import android.support.test.rule.ActivityTestRule;
 
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -28,7 +29,8 @@ public class APIWithMockServerTest {
 
 
     @Rule
-    public ActivityTestRule activityTestRule = new ActivityTestRule(MainActivity.class, true, false);
+    public ActivityTestRule activityTestRule
+            = new ActivityTestRule(MainActivity.class, true, false);
 
     @Test
     public void

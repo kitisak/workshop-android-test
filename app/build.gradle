@@ -71,7 +71,7 @@ task jacocoTestReport(type: JacocoReport, dependsOn: 'testDebugUnitTest') {
     sourceDirectories = files([mainSrc])
     classDirectories = files([debugTree])
     executionData = files(["${buildDir}/jacoco/testDebugUnitTest.exec",
-                           "${buildDir}/outputs/code-coverage/connected/Nexus_5X_API_N(AVD) - N-coverage.ec"
+                           "${buildDir}/outputs/code-coverage/connected/SM-G360HU - 4.4.4-coverage.ec"
     ])
 
     // Work-around to allow us to build list of executionData files in doFirst
