@@ -15,7 +15,7 @@ import okhttp3.Response;
 
 public class CalculatorApi {
 
-    public static String BASE_URL = "http://128.199.198.13:30000" ;
+    public static String BASE_URL = "http://128.199.198.13:3000" ;
 
     public interface CalculatorApiCallback {
         void onSuccess(String result);

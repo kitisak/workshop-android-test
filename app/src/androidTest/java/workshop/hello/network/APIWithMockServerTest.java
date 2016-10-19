@@ -40,7 +40,7 @@ public class APIWithMockServerTest {
                 .setBody("{\"result\": \"6.00\"}"));
 
         server.start();
-        APIConstant.url = server.url("/").toString();
+        CalculatorApi.BASE_URL = server.url("/").toString();
 
         Intent intent = new Intent();
         activityTestRule.launchActivity(intent);

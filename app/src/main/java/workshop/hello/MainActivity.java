@@ -45,9 +45,9 @@ public class MainActivity extends AppCompatActivity implements CalculatorApi.Cal
 //            result = calculator.add(number1, number2);
             CalculatorApi calculatorApi = new CalculatorApi();
             calculatorApi.setCallback(this);
-            String url = String.format("http://128.199.198.13:3000/api/plus/%d/%d", number1, number2);
+            String url = String.format("%s/api/plus/%d/%d", CalculatorApi.BASE_URL, number1, number2);
             Request request = new Request.Builder()
-                    .url(APIConstant.url)
+                    .url(url)
                     .build();
             calculatorApi.setRequest(request);
             calculatorApi.add(number1, number2);

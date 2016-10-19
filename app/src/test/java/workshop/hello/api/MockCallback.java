@@ -1,5 +1,7 @@
 package workshop.hello.api;
 
+import static junit.framework.Assert.fail;
+
 /**
  * Created by somkiat on 10/19/2016 AD.
  */
@@ -13,8 +15,9 @@ class MockCallback implements CalculatorApi.CalculatorApiCallback {
 
     @Override
     public void onSuccess(String result) {
-        System.out.println("=======");
-//        assert "5.00".equals(result);
+        if(!"5.00".equals(result)) {
+            fail();
+        }
         called = true;
     }
 }
