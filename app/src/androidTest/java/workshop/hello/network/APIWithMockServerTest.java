@@ -1,9 +1,7 @@
 package workshop.hello.network;
 
 import android.content.Intent;
-import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
-import android.test.InstrumentationTestCase;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -14,7 +12,6 @@ import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import workshop.hello.MainActivity;
 import workshop.hello.R;
-import workshop.hello.api.APIConstant;
 import workshop.hello.api.CalculatorApi;
 
 import static android.support.test.espresso.Espresso.onView;

@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import okhttp3.Request;
-import workshop.hello.api.APIConstant;
 import workshop.hello.api.CalculatorApi;
 
 public class MainActivity extends AppCompatActivity implements CalculatorApi.CalculatorApiCallback {
