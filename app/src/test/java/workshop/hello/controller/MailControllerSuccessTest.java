@@ -5,7 +5,6 @@ import org.junit.Test;
 
 import workshop.hello.MainActivity;
 
-import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
 
 public class MailControllerSuccessTest {
