@@ -20,6 +20,23 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+//    productFlavors {
+//        dev {
+//            applicationId "workshop.hello"
+//            buildConfigField 'String', 'HOST', '"http://dev:3000"'
+//        }
+//
+//        qa {
+//            applicationId "workshop.hello"
+//            buildConfigField 'String', 'HOST', '"http://test:3000"'
+//        }
+//
+//        prod {
+//            applicationId "workshop.hello"
+//            buildConfigField 'String', 'HOST', '"http://128.199.198.13:3000"'
+//        }
+//    }
 }
 
 dependencies {
