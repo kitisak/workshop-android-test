@@ -1,5 +1,7 @@
 package workshop.hello.api;
 
+import com.google.gson.Gson;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -13,22 +15,26 @@ import okhttp3.Response;
 
 public class CalculatorApi {
 
+    public static String BASE_URL = "http://128.199.198.13:30000" ;
+
     public interface CalculatorApiCallback {
-        void onSuccess(int result);
+        void onSuccess(String result);
     }
 
     private CalculatorApiCallback callback;
+    private Request request;
 
     public void setCallback(CalculatorApiCallback callback) {
         this.callback = callback;
     }
 
+    public void setRequest(Request request) {
+        this.request = request;
+    }
+
+
     public void add(int number1, int number2) {
-        String url = String.format("http://128.199.198.13:3000/api/plus/%d/%d", number1, number2);
         OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder()
-                .url(url)
-                .build();
 
         client.newCall(request).enqueue(new Callback() {
             @Override
@@ -42,14 +48,9 @@ public class CalculatorApi {
                     throw new IOException("Unexpected code " + response);
                 }
 
-                try {
-                    String responseData = response.body().string();
-                    JSONObject json = new JSONObject(responseData);
-                    callback.onSuccess(json.getInt("result"));
-                } catch (JSONException e) {
-
-                }
-
+                Gson gson = new Gson();
+                Result result = gson.fromJson(response.body().charStream(), Result.class);
+                callback.onSuccess(result.getResult());
             }
         });
     }

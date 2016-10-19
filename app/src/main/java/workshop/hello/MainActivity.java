@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import okhttp3.Request;
+import workshop.hello.api.APIConstant;
 import workshop.hello.api.CalculatorApi;
 
 public class MainActivity extends AppCompatActivity implements CalculatorApi.CalculatorApiCallback {
@@ -40,9 +42,17 @@ public class MainActivity extends AppCompatActivity implements CalculatorApi.Cal
         if(Operation.Minus == getCurrentOperation()) {
             result = calculator.minus(number1, number2);
         } else {
-            result = calculator.add(number1, number2);
+//            result = calculator.add(number1, number2);
+            CalculatorApi calculatorApi = new CalculatorApi();
+            calculatorApi.setCallback(this);
+            String url = String.format("http://128.199.198.13:3000/api/plus/%d/%d", number1, number2);
+            Request request = new Request.Builder()
+                    .url(APIConstant.url)
+                    .build();
+            calculatorApi.setRequest(request);
+            calculatorApi.add(number1, number2);
         }
-        resultTV.setText(String.valueOf(result));
+//        resultTV.setText(String.valueOf(result));
     }
 
     private Operation currentOperation = Operation.ADD;
@@ -68,11 +78,11 @@ public class MainActivity extends AppCompatActivity implements CalculatorApi.Cal
     }
 
     @Override
-    public void onSuccess(final int result) {
+    public void onSuccess(final String result) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                resultTV.setText(String.valueOf(result));
+                resultTV.setText(result);
             }
         });
     }
