@@ -84,7 +84,7 @@ public class MainActivityTest2 {
         appCompatEditText5.perform(pressImeActionButton());
 
         ViewInteraction textView = onView(
-                allOf(withId(R.id.result), withText("16.0"),
+                allOf(withId(R.id.result), withText("16.00"),
                         childAtPosition(
                                 allOf(withId(R.id.activity_main),
                                         childAtPosition(
@@ -92,7 +92,7 @@ public class MainActivityTest2 {
                                                 0)),
                                 4),
                         isDisplayed()));
-        textView.check(matches(withText("16.0")));
+        textView.check(matches(withText("16.00")));
 
     }
 

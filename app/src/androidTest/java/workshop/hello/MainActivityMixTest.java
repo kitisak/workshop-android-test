@@ -28,7 +28,7 @@ public class MainActivityMixTest {
         onView(withId(R.id.calBtn)).perform(click());
 
         //Assert
-        onView(withId(R.id.result)).check(matches(withText("2.0")));
+        onView(withId(R.id.result)).check(matches(withText("2.00")));
     }
 
 

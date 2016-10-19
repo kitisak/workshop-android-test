@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -25,10 +26,10 @@ public class MainActivityAddTest {
         onView(withId(R.id.num1)).perform(typeText("1"));
         onView(withId(R.id.plusBtn)).perform(click());
         onView(withId(R.id.num2)).perform(typeText("1"));
-        onView(withId(R.id.calBtn)).perform(click());
+        onView(withId(R.id.calBtn)).perform(click(), closeSoftKeyboard());
 
         //Assert
-        onView(withId(R.id.result)).check(matches(withText("2.0")));
+        onView(withId(R.id.result)).check(matches(withText("2.00")));
     }
 
     @Test public void
@@ -37,10 +38,10 @@ public class MainActivityAddTest {
         onView(withId(R.id.num1)).perform(typeText("1"));
         onView(withId(R.id.plusBtn)).perform(click());
         onView(withId(R.id.num2)).perform(typeText("2"));
-        onView(withId(R.id.calBtn)).perform(click());
+        onView(withId(R.id.calBtn)).perform(click(), closeSoftKeyboard());
 
         //Assert
-        onView(withId(R.id.result)).check(matches(withText("3.0")));
+        onView(withId(R.id.result)).check(matches(withText("3.00")));
     }
 
 }

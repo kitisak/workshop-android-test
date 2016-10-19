@@ -29,11 +29,6 @@ public class MainActivity extends AppCompatActivity implements CalculatorApi.Cal
     }
 
     public void onCalculate(View view) {
-
-        if(!validate()) {
-            return;
-        }
-
         Calculator calculator = new Calculator();
         int number1 = Integer.parseInt(num1ET.getText().toString());
         int number2 = Integer.parseInt(num2ET.getText().toString());
@@ -41,17 +36,9 @@ public class MainActivity extends AppCompatActivity implements CalculatorApi.Cal
         if(Operation.Minus == getCurrentOperation()) {
             result = calculator.minus(number1, number2);
         } else {
-//            result = calculator.add(number1, number2);
-            CalculatorApi calculatorApi = new CalculatorApi();
-            calculatorApi.setCallback(this);
-            String url = String.format("%s/api/plus/%d/%d", CalculatorApi.BASE_URL, number1, number2);
-            Request request = new Request.Builder()
-                    .url(url)
-                    .build();
-            calculatorApi.setRequest(request);
-            calculatorApi.add(number1, number2);
+            result = calculator.add(number1, number2);
         }
-//        resultTV.setText(String.valueOf(result));
+        resultTV.setText(String.format("%.2f", result));
     }
 
     private Operation currentOperation = Operation.ADD;

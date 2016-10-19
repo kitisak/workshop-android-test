@@ -28,7 +28,7 @@ public class MainActivityMinusTest {
         onView(withId(R.id.calBtn)).perform(click());
 
         //Assert
-        onView(withId(R.id.result)).check(matches(withText("0.0")));
+        onView(withId(R.id.result)).check(matches(withText("0.00")));
     }
 
 }
