@@ -1,6 +1,8 @@
 package workshop.hello.network;
 
 import android.content.Intent;
+import android.support.test.espresso.core.deps.guava.base.Charsets;
+import android.support.test.espresso.core.deps.guava.io.Resources;
 import android.support.test.rule.ActivityTestRule;
 
 import org.junit.Rule;
@@ -50,6 +52,10 @@ public class APIWithMockServerTest {
         onView(withId(R.id.result)).check(matches(withText("6.00")));
 
         server.shutdown();
+    }
+
+    private String getDataFromFile(String resource) throws IOException {
+        return Resources.toString(Resources.getResource(resource), Charsets.UTF_8);
     }
 
 }
